@@ -10,17 +10,17 @@ public class Test {
       //System.out.println(change[i]);
     }
     
-    while(!equal(middle, end)) {
+    while(!ArrayEqual(middle, end)) {
       for (int i = 0; i < middle.length; i++) {
-        if (i == 0 && change[i] && middle[i] != middle[i + 1]) switch(middle, i);
-        else if (i == (middle.length - 1) && change[i] && middle[i] != middle[i - 1]) switch(middle, i);
-        else if (change[i] && (middle[i] != middle[i + 1] || middle[i] != middle[i - 1])) switch(middle, i);
+        if (i == 0 && change[i] && middle[i] != middle[i + 1]) switcheroo(middle, i);
+        else if (i == (middle.length - 1) && change[i] && middle[i] != middle[i - 1]) switcheroo(middle, i);
+        else if (change[i] && (middle[i] != middle[i + 1] || middle[i] != middle[i - 1])) switcheroo(middle, i);
         System.out.println(Arrays.toString(middle));
       }
     }
   }
   
-  public boolean equal(boolean[] a, boolean[] b) {
+  public boolean ArrayEqual(boolean[] a, boolean[] b) {
     if (a.length != b.length) return false;
     for (int i = 0; i < a.length; i++) {
       if (a[i] != b[i]) return false;
@@ -28,7 +28,7 @@ public class Test {
     return true;
   }
   
-  public void switch(boolean[] a, index i) {
+  public void switcheroo(boolean[] a, int i) {
     if (a[i]) {
       a[i] = false;
       return;
