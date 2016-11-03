@@ -15,6 +15,7 @@ public class Test {
         if (i == 0 && change[i] && middle[i] != middle[i + 1]) switch(middle, i);
         else if (i == (middle.length - 1) && change[i] && middle[i] != middle[i - 1]) switch(middle, i);
         else if (change[i] && (middle[i] != middle[i + 1] || middle[i] != middle[i - 1])) switch(middle, i);
+        System.out.println(Arrays.toString(middle));
       }
     }
   }
