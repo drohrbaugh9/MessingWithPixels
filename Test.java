@@ -7,13 +7,14 @@ public class Test {
     
     for (int i = 0; i < start.length; i++) {
       change[i] = !(start[i] && end[i]);
-      System.out.println(change[i]);
+      //System.out.println(change[i]);
     }
     
     while(!equal(middle, end)) {
       for (int i = 0; i < middle.length; i++) {
         if (i == 0 && change[i] && middle[i] != middle[i + 1]) switch(middle, i);
-        else if (i == (middle.length - 1) && change
+        else if (i == (middle.length - 1) && change[i] && middle[i] != middle[i - 1]) switch(middle, i);
+        else if (change[i] && (middle[i] != middle[i + 1] || middle[i] != middle[i - 1])) switch(middle, i);
       }
     }
   }
