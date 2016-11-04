@@ -1,4 +1,4 @@
-package netbeansproject;
+//package netbeansproject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ public class MessingWithPixels {
         ArrayListInit();
       	
         //System.out.println("change array: " + change.toString());
-        System.out.println("step 0: " + middle.toString());
+        System.out.println("step 0: [" + middle.toString().substring(8, middle.toString().length() - 8) + "]");
 
         int j = 0;
         while (!middle.equals(end) && j < 6) {
@@ -28,7 +28,7 @@ public class MessingWithPixels {
                 //System.out.println("middle: " + newMiddle.toString());
             }
             middle = new ArrayList<>(newMiddle);
-            System.out.println("step " + (j + 1) + ": " + middle.toString());
+            System.out.println("step " + (j + 1) + ": [" + middle.toString().substring(8, middle.toString().length() - 8) + "]");
           	updateChange();
           	j++;
         }
