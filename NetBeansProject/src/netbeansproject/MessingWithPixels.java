@@ -41,7 +41,6 @@ public class MessingWithPixels {
             middle = new ArrayList<>(newMiddle);
             System.out.println("step " + (j + 1) + ": [" + middle.toString().substring(8, middle.toString().length() - 8) + "]");
             updateChange();
-            j++;
         }
     }
 
