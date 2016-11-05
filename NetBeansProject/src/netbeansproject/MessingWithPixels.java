@@ -1,46 +1,59 @@
 package netbeansproject;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MessingWithPixels {
 
-    static boolean M = true, _ = false;
+    static final boolean M = true, L = false;
 
-    static boolean[][] start = {
-        {_, _, _, _, _, _, _},
-        {_, M, M, M, M, _, _},
-        {_, M, M, M, M, _, _},
-        {_, _, _, _, _, _, _},
-        {_, _, _, _, _, _, _}};
-    static boolean[][] end = {
-        {_, _, _, _, _, _, _},
-        {_, _, _, _, _, _, _},
-        {_, _, M, M, M, M, _},
-        {_, _, M, M, M, M, _},
-        {_, _, _, _, _, _, _}};
+    static final boolean[][] start = {
+        {L, L, L, L, L},
+        {L, M, L, L, L},
+        {L, M, L, L, L},
+        {L, M, L, L, L},
+        {L, M, L, L, L},
+        {L, M, M, M, L},
+        {L, L, L, L, L}};
+    static final boolean[][] end = {
+        {L, L, L, L, L},
+        {L, M, M, L, L},
+        {L, M, L, M, L},
+        {L, M, M, L, L},
+        {L, M, L, M, L},
+        {L, M, M, L, L},
+        {L, L, L, L, L}};
+    /*static final boolean[][] start = {
+        {L, L, L, L, L, L, L},
+        {L, M, M, M, L, L, L},
+        {L, L, L, L, L, L, L}};
+    static final boolean[][] end = {
+        {L, L, L, L, L, L, L},
+        {L, L, L, M, M, M, L},
+        {L, L, L, L, L, L, L}};*/
     static boolean[][] change;
-    static boolean[][] middle = start;
-    static boolean[][] newMiddle = middle;
+    static boolean[][] middle;
+    static boolean[][] newMiddle;
 
     public static void main(String[] args) {
+        setupMatrices();
+        
+        //System.out.println("change array (step 0): "); printMatrix(change);
+        System.out.println("step 0: "); printMatrix(middle);
 
-        //System.out.println("change array: " + change.toString());
-        System.out.println("step 0: [" + middle.toString().substring(8, middle.toString().length() - 8) + "]");
-
-        while (middle != end) {
-            //System.out.println("newmiddle: " + newMiddle.toString() + ", i: 0");
+        int step = 1;
+        while (!matricesEqual(middle, end) && step < 10) {
             for (int i = 1; i < (middle.length - 1); i++) {
                 for (int j = 1; j < (middle[i].length - 1); j++) {
-                    if (change[i][j] && (middle.get(i) != middle.get(i - 1) || middle.get(i) != middle.get(i + 1))) {
-                        switcheroo(newMiddle, i);
+                    if (change[i][j] && checkNeighbors(middle, i, j)) {
+                        switcheroo(newMiddle, i, j);
                     }
                 }
-                //System.out.println("newmiddle: " + newMiddle.toString() + ", i: " + i);
-                //System.out.println("middle: " + newMiddle.toString());
             }
-            middle = new ArrayList<>(newMiddle);
-            System.out.println("step " + (j + 1) + ": [" + middle.toString().substring(8, middle.toString().length() - 8) + "]");
+            updateMiddle();
+            System.out.println("step " + step + ": "); printMatrix(middle);
             updateChange();
+            //System.out.println("change array (step " + step + "): "); printMatrix(change);
+            step++;
         }
     }
 
@@ -53,13 +66,66 @@ public class MessingWithPixels {
             a[i][j] = true;
         }
     }
+    
+    public static boolean matricesEqual(boolean[][] a, boolean[][] b) {
+        if (a.length != b.length) return false;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i].length != b[i].length) return false;
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j] != b[i][j]) return false;
+            }
+        }
+        return true;
+    }
 
     public static void updateChange() {
-        change = new boolean[start.length][start.length];
+        change = new boolean[start.length][start[0].length];
         for (int i = 0; i < start.length; i++) {
-            for (int j = 0; j < start.length; j++) {
+            for (int j = 0; j < start[i].length; j++) {
                 change[i][j] = (!(middle[i][j] == end[i][j]));
             }
         }
+    }
+
+    public static void updateMiddle() {
+        middle = new boolean[newMiddle.length][newMiddle[0].length];
+        for (int i = 0; i < newMiddle.length; i++) {
+            for (int j = 0; j < newMiddle[i].length; j++) {
+                middle[i][j] = newMiddle[i][j];
+            }
+        }
+    }
+
+    public static boolean checkNeighbors(boolean[][] a, int r, int c) {
+        boolean d = a[r][c];
+        boolean corners = d != a[r - 1][c] || d != a[r + 1][c] || d != a[r][c - 1] || d != a[r][c + 1];
+        boolean diags = d != a[r - 1][c - 1] || d != a[r - 1][c + 1] || d != a[r + 1][c - 1] || d != a[r + 1][c + 1];
+        return diags || corners;
+    }
+    
+    public static void printMatrix(boolean[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j]) System.out.print("M ");
+                else System.out.print("_ ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void setupMatrices() {
+        middle = new boolean[start.length][start[0].length];
+        for (int i = 0; i < start.length; i++) {
+            for (int j = 0; j < start[i].length; j++) {
+                middle[i][j] = start[i][j];
+            }
+        }
+        newMiddle = new boolean[middle.length][middle[0].length];
+        for (int i = 0; i < middle.length; i++) {
+            for (int j = 0; j < middle[i].length; j++) {
+                newMiddle[i][j] = middle[i][j];
+            }
+        }
+        updateChange();
     }
 }
