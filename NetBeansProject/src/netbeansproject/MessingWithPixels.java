@@ -2,7 +2,7 @@ package netbeansproject;
 
 public class MessingWithPixels {
 
-    static final int h = 2, l = 0, f = 1;
+    static final int h = 2, l = 0, f = 0;
     
     static final int[][] A = {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f},
@@ -73,8 +73,8 @@ public class MessingWithPixels {
         {f,h,h,h,h,h,h,h,h,h,h,l,l,l,l,f},
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     
-    static final int[][] start = C;
-    static final int[][] end = D;
+    static final int[][] start = A;
+    static final int[][] end = B;
     static int[][] change;
     static int[][] middle;
     static int[][] newMiddle;
@@ -87,27 +87,28 @@ public class MessingWithPixels {
 
         int step = 1;
         while (!matricesEqual(middle, end) && step < 10) {
-            /*for (int r = 1; r < middle.length - 1; r++) {
+            /*
+            for (int r = 1; r < middle.length - 1; r++) {
                 int c = 1;
-                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) {
-                    switcheroo(newMiddle, r, c);
-                }
+                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) switcheroo(newMiddle, r, c);
                 c = middle.length - 2;
-                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) {
-                    switcheroo(newMiddle, r, c);
-                }
+                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) switcheroo(newMiddle, r, c);
             }
             
             for (int c = 1; c < middle[0].length - 1; c++) {
                 int r = 1;
-                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) {
-                    switcheroo(newMiddle, r, c);
-                }
+                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) switcheroo(newMiddle, r, c);
                 r = middle.length - 2;
-                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) {
-                    switcheroo(newMiddle, r, c);
+                if (change[r][c] == 1 && checkNeighborsEdges(middle, r, c)) switcheroo(newMiddle, r, c);
+            }
+            
+            for (int i = 2; i < (middle.length - 2); i++) {
+                for (int j = 2; j < (middle[i].length - 2); j++) {
+                    if (change[i][j] == 1 && checkNeighborsInterior(middle, i, j)) {
+                        switcheroo(newMiddle, i, j);
+                    }
                 }
-            }*/
+            }//*/
             
             for (int i = 1; i < (middle.length - 1); i++) {
                 for (int j = 1; j < (middle[i].length - 1); j++) {
@@ -116,6 +117,7 @@ public class MessingWithPixels {
                     }
                 }
             }
+            
             updateMiddle();
             System.out.println("\nstep " + step + ": "); printMatrix(middle);
             updateChange();
@@ -183,14 +185,15 @@ public class MessingWithPixels {
         return corners;
     }
     
-    /*public static boolean checkNeighborsEdges(int[][] a, int row, int col) {
+    ///*
+    public static boolean checkNeighborsEdges(int[][] a, int row, int col) {
         int val = a[row][col], up = a[row - 1][col], down = a[row + 1][col], left = a[row][col - 1], right = a[row][col + 1];
-        boolean topEdge = up == 1 && (val != down || val == left || val == right);
-        boolean bottomEdge = down == 1 && (val == up || val == left || val == right);
-        boolean leftEdge = left == 1 && (val == up || val == down || val == right);
-        boolean rightEdge = right == 1 && (val == up || val == down || val == left);
+        boolean topEdge = up == 1 && (val != down || val != left || val != right);
+        boolean bottomEdge = down == 1 && (val != up || val != left || val != right);
+        boolean leftEdge = left == 1 && (val != up || val != down || val != right);
+        boolean rightEdge = right == 1 && (val != up || val != down || val != left);
         return topEdge || bottomEdge || leftEdge || rightEdge;
-    }*/
+    }//*/
     
     public static void printMatrix(int[][] a) {
         for (int i = 1; i < a.length - 1; i++) {
