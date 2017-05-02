@@ -82,14 +82,15 @@ public class MessingWithPixels {
     static boolean topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner;
 
     public static void main(String[] args) {
+        
         setupMatrices();
         
-        //System.out.println("change array (step 0): "); printMatrix(change);
+        System.out.println("change array (step 0): "); printMatrix(change);
         System.out.println("step 0: "); printMatrix(middle);
 
         int step = 1;
         while (!matricesEqual(middle, end) && step < 10) {
-            ///*
+            /*
             checkCorners(middle);
             for (int r = 1; r < middle.length - 1; r++) {
                 int c = 1;
@@ -111,7 +112,8 @@ public class MessingWithPixels {
                         switcheroo(newMiddle, i, j);
                     }
                 }
-            }//*/
+            }
+            //*/
             
             /*
             for (int i = 1; i < (middle.length - 1); i++) {
@@ -125,7 +127,7 @@ public class MessingWithPixels {
             updateMiddle();
             System.out.println("\nstep " + step + ": "); printMatrix(middle);
             updateChange();
-            //System.out.println("change array (step " + step + "): "); printMatrix(change);
+            System.out.println("change array (step " + step + "): "); printMatrix(change);
             step++;
         }
     }
@@ -198,7 +200,9 @@ public class MessingWithPixels {
         boolean rightEdge = right == 1 && (val == up || val == down || val == left);
         return topEdge || bottomEdge || leftEdge || rightEdge;
     }
+    //*/
     
+    /*
     public static void checkCorners(int[][]a) {
         int up = a[row - 1][col], down = a[row + 1][col], left = a[row][col - 1], right = a[row][col + 1];
         int val = middle[1][1], bottomRow = a.length - 2, leftCol = a[0].length - 2;
