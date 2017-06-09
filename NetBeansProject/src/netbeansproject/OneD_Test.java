@@ -1,4 +1,4 @@
-package netbeansproject;
+//package netbeansproject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,18 +6,21 @@ import java.util.Arrays;
 public class OneD_Test {
 
     static final int h = 2, l = 0, f = 1;
-    static ArrayList<Integer> start; static int[] s = {f, h, h, h, l, l, f};
-    static ArrayList<Integer> end;   static int[] e = {f, l, l, h, h, h, f};
+    static ArrayList<Integer> start; static int[] s = {f, l, h, l, l, l, f};
+    static ArrayList<Integer> end;   static int[] e = {f, l, l, l, h, l, f};
     static ArrayList<Integer> change;
     static ArrayList<Integer> middle;
     static ArrayList<Integer> newMiddle;
+  
+    //debugging variables
+    static boolean printChange = false;
 
     public static void main(String[] args) {
         ArrayListInit();
 
-        //System.out.println("change array: " + change.toString());
         System.out.print("step 0: ");
         printArray(middle);
+        printChange();
 
         int j = 0;
         while (!middle.equals(end) && j < 6) {
@@ -33,7 +36,7 @@ public class OneD_Test {
             System.out.print("step " + (j + 1) + ": ");
             printArray(middle);
             updateChange();
-            //System.out.println("change array: " + change.toString());
+            printChange();
             j++;
         }
     }
@@ -90,5 +93,10 @@ public class OneD_Test {
             else System.out.print("  ");
         }
         System.out.println();
+    }
+    
+    public static void printChange() {
+      	if (!printChange) return;
+        System.out.println("change array: [" + change.toString().substring(4,change.toString().length() - 4) + "]");
     }
 }
