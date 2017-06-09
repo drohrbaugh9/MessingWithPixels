@@ -19,7 +19,7 @@ public class MessingWithPixels {
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
-        {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
+        {l,h,h,h,h,l,l,l,l,l,l,h,h,h,h,l},
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     static final int[][] B = {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f},
@@ -36,7 +36,7 @@ public class MessingWithPixels {
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
         {f,h,h,h,h,h,h,h,h,h,h,h,h,h,l,f},
-        {f,h,h,h,h,h,h,h,h,h,h,h,h,l,l,f},
+        {l,h,h,h,h,h,h,h,h,h,h,h,h,l,l,f},
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     static final int[][] C = {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f},
@@ -57,7 +57,7 @@ public class MessingWithPixels {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     static final int[][] D = {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f},
-        {f,h,h,h,h,h,h,h,h,h,h,l,l,l,l,f},
+        {l,h,h,h,h,h,h,h,h,h,h,l,l,l,l,f},
         {f,h,h,h,h,h,h,h,h,h,h,h,l,l,l,f},
         {f,h,h,h,h,l,l,l,l,h,h,h,h,l,l,f},
         {f,h,h,h,h,l,l,l,l,l,h,h,h,h,l,f},
@@ -73,8 +73,8 @@ public class MessingWithPixels {
         {f,h,h,h,h,h,h,h,h,h,h,l,l,l,l,f},
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     
-    static final int[][] start = B;
-    static final int[][] end = A;
+    static final int[][] start = A;
+    static final int[][] end = C;
     static int[][] change;
     static int[][] middle;
     static int[][] newMiddle;
