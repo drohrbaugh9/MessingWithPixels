@@ -23,7 +23,7 @@ public class MessingWithPixels {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f}};
     static final int[][] B = {
         {f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f},
-        {f,h,h,h,h,h,h,h,h,h,h,h,h,l,l,f},
+        {l,h,h,h,h,h,h,h,h,h,h,h,h,l,l,f},
         {f,h,h,h,h,h,h,h,h,h,h,h,h,h,l,f},
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
         {f,h,h,h,h,l,l,l,l,l,l,h,h,h,h,f},
@@ -85,7 +85,7 @@ public class MessingWithPixels {
         
         setupMatrices();
         
-        System.out.println("change array (step 0): "); printMatrix(change);
+        //System.out.println("change array (step 0): "); printMatrix(change);
         System.out.println("step 0: "); printMatrix(middle);
 
         int step = 1;
@@ -115,7 +115,7 @@ public class MessingWithPixels {
             }
             //*/
             
-            /*
+            //*
             for (int i = 1; i < (middle.length - 1); i++) {
                 for (int j = 1; j < (middle[i].length - 1); j++) {
                     if (change[i][j] == 1 && checkNeighborsInterior(middle, i, j)) {
@@ -127,7 +127,7 @@ public class MessingWithPixels {
             updateMiddle();
             System.out.println("\nstep " + step + ": "); printMatrix(middle);
             updateChange();
-            System.out.println("change array (step " + step + "): "); printMatrix(change);
+            //System.out.println("change array (step " + step + "): "); printMatrix(change);
             step++;
         }
     }
