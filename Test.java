@@ -7,7 +7,7 @@ public class Test {
     
     for (int i = 0; i < start.length; i++) {
       change[i] = !(start[i] && end[i]);
-      //System.out.println(change[i]);
+      System.out.println(change[i]);
     }
     
     while(!ArrayEqual(middle, end)) {
