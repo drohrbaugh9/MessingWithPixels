@@ -1,4 +1,4 @@
-//package netbeansproject;
+package netbeansproject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,13 +24,13 @@ public class OneD_Test {
 
         int j = 0;
         while (!middle.equals(end) && j < 6) {
-            //System.out.println("newMiddle: " + newMiddle.toString() + ", i: 0");
+            System.out.println("newMiddle: " + newMiddle.toString() + ", i: 0");
             for (int i = 1; i < middle.size() - 1; i++) {
                 if (change.get(i) == 2 && (middle.get(i) != middle.get(i - 1) || middle.get(i) != middle.get(i + 1))) {
                     switcheroo(newMiddle, i);
                 }
-                //System.out.println("newMiddle: " + newMiddle.toString() + ", i: " + i);
-                //System.out.println("middle: " + newMiddle.toString());
+                System.out.println("newMiddle: " + newMiddle.toString() + ", i: " + i);
+                System.out.println("middle: " + newMiddle.toString());
             }
             middle = new ArrayList<>(newMiddle);
             System.out.print("step " + (j + 1) + ": ");
